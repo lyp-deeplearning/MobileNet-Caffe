@@ -1,0 +1,16 @@
+net: "/home/liuyp/liu/MobileNet-Caffe/train_bak.prototxt" # train.prototxt的路径,最好写绝对路径
+test_iter: 60 # 你的 总测试样本数 / batchsize ,大约是这样,一个整数
+test_interval: 60 # 你的 总训练样本数 /batchsize
+solver_type: SGD
+base_lr: 0.0008  # 初试学习率,对训练影响巨大,如果你的loss一直=87.3...,很可能是这个原因
+lr_policy: "step" # 梯度下降的方式
+gamma: 0.1 # 一般是这个值 
+stepsize: 500 # 每多少的iter下降一次学习率
+#debug_info: true 
+display: 1 # 每多少iter打印一下loss
+max_iter: 200 # 最大迭代次数,一般是test_interval的3-6倍
+momentum: 0.9 # 一般是这个
+weight_decay: 0.0005 # 一般是这个
+snapshot: 30 # 每多少次iter保存一下caffe的model,同时也会打印top1 和 top5 准确率,如果你的硬盘空间充足可以设小一点,反正MobileNet很小,20M不到
+snapshot_prefix: "./model/mobilenet" # caffemodel的保存路径和保存名称,如"model"文件夹下记得要新建,他的名字是mobilenet_iter_1000.caffemodel
+solver_mode: GPU # 使用GPU训练
